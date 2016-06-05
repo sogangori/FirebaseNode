@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--Directive-->
+<html ng-app="app">
+  <head>
+      <!--Scripts-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="/index.js"></script>
+    
+  </head>
+  <!--Controller-->
+  <body ng-controller="Ctrl">
+      <a href="chart.html" >chart</a>
+    <div class="header">
+      <!--Style-->
+      <h1 ng-style="{'background-color': 'rgb(' + data.colors.r + ',' + data.colors.g + ',' + data.colors.b +')'}">                      
+        Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}                                                     
+      </h1>
+      <h2> Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}</h2>   
+
+    </div>   
+      onSensor {{ data.onSensor}}
+      <button id="changeColor">changeColor</button>
+    <button id="addColor">add Color</button>
+     <button id="puchColor">puch Color</button>
+
+<p>
+  <label for="amount">slider :</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+     <div id="sliderR"></div>
+      <div id="sliderG"></div>
+      <div id="sliderB"></div>
+  </body>
+</html>
