@@ -15,26 +15,27 @@
   </head>
   <!--Controller-->
   <body ng-controller="Ctrl">
-      <a href="chart.html" >chart</a>
+      <div align="center">
+          <a href="chart.html" >chart</a>
+      <a href="chartSensor.html" >chartSensor</a>
     <div class="header">
       <!--Style-->
-      <h1 ng-style="{'background-color': 'rgb(' + data.colors.r + ',' + data.colors.g + ',' + data.colors.b +')'}">                      
-        Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}                                                     
-      </h1>
-      <h2> Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}</h2>   
+      <div>If you can see backgroundcolor below, Firebase is working</div>
+      <h5 ng-style="{'background-color': 'rgb(' + data.colors.r + ',' + data.colors.g + ',' + data.colors.b +')'}">                      
+        firebase test {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}                                                     
+      </h5>
+    </div>       
+      
+      <div><a href="http://blog.naver.com/sogangori/220724117841">Firebase - SETUP </a></div>
+      <div><a href="http://blog.naver.com/sogangori/220730012897">Firebase - set, push, on, parsing </a></div>      
+      <div><a href="http://blog.naver.com/sogangori/220726753824">Firebase - REST API</a> </div>
+      <div><a href="https://developers.google.com/chart/interactive/docs/gallery/linechart">Google Chart</a> </div>
+        
+      <div>
+          <img src="https://firebasestorage.googleapis.com/v0/b/amber-fire-9368.appspot.com/o/8%20Things%20You%20Should%20Not%20Say%20To%20a%20Developer.jpg?alt=media&token=8f6be7aa-6a60-41ad-97ed-8ae1ae4cc458" />
+      </div>
+      </div>
+      
 
-    </div>   
-      onSensor {{ data.onSensor}}
-      <button id="changeColor">changeColor</button>
-    <button id="addColor">add Color</button>
-     <button id="puchColor">puch Color</button>
-
-<p>
-  <label for="amount">slider :</label>
-  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-</p>
-     <div id="sliderR"></div>
-      <div id="sliderG"></div>
-      <div id="sliderB"></div>
   </body>
 </html>

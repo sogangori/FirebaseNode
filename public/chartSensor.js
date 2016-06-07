@@ -44,22 +44,20 @@ var config = {
 };
 firebase.initializeApp(config);
 
-firebase.database().ref().child('user-posts').on('value', function (snapshot) {
+firebase.database().ref().child('light').on('value', function (snapshot) {
 
     var snapVal = snapshot.val();
-    console.log("snapshot.val()", snapVal);
+    //console.log("snapshot.val()", snapVal);
     var count = 0;
     var chartArray = [];
-    chartArray.push(['Time', 'R', 'G', 'B']);
+    chartArray.push(['Time', 'light']);
     for (var key in snapVal) {
         //key는 유저 id를 말한다 예)park 이 보낸 데이터들
         if (snapVal.hasOwnProperty(key)) {                
-            console.log("key/value", key, snapVal[key]);
+            //console.log("key/value", key, snapVal[key]);
             for (var obj in snapVal[key]) {
-                var rgb = snapVal[key][obj];
-                var rgbObj = angular.fromJson(rgb)                
-                rgb = [count++, rgbObj['r'], rgbObj['g'], rgbObj['b']];                 
-                chartArray.push(rgb);
+                var light = snapVal[key][obj];
+                chartArray.push([count++, light]);
             }            
         }
     }
@@ -68,77 +66,52 @@ firebase.database().ref().child('user-posts').on('value', function (snapshot) {
 });
 
 
-var RGBArray = [9, 10, 11];
+firebase.database().ref().child('sensor').on('value', function (snapshot) {
+	var snapVal = snapshot.val();
+    console.log("sensor snapshot.val()", snapVal);
+	$("#amountInterval").val("Interval " + snapVal["interval"]);
+	$("#sliderSensorIntervalServer").slider({
+		value:snapVal["interval"],
+		min: 1,
+        max: 60
+	});
+});
+ 
 
-function SendRGB() {
-    var colorsRef = firebaseRef.child("/colors");
-    colorsRef.set({ "r": RGBArray[0], "b": RGBArray[1], "g": RGBArray[2] });
-    console.log("RGBArray", RGBArray, colorsRef);
-}
-function AddRGB() {
-    username = "park";
-    firebase.database().ref('user/'+username).set(
-        { "r": RGBArray[0], "b": RGBArray[1], "g": RGBArray[2] }
-    );    
-    console.log("RGBArray", RGBArray, firebase.database().ref('user/' + username));
-}
-function PushRGB() {
-    uid = "park";
+function PushSensor(value) {    
     var postData = {
-        uid: uid,
-        r: RGBArray[0], 
-        g: RGBArray[1],
-        b: RGBArray[2]
+        light: value
     };
-    var newPostKey = firebase.database().ref().child('post').push().key;
+    var newPostKey = firebase.database().ref().child('light').push().key;
     var updates = {};
-    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+    updates['/light/' + newPostKey] = postData;
     var result=firebase.database().ref().update(updates);
     console.log("pushed result", result);
 }
-$(function () {
-    $("#puchColor").click(function () {
-        PushRGB();
-    });
-    $("#addColor").click(function () {
-        RGBArray = [250, 130, 10];         
-        AddRGB();
-    });
-    $("#changeColor").click(function () {
-        RGBArray = [155, 255, 0];
-        SendRGB();
-    });
-    $("#sliderR").slider({
+function SetSensorInterval(value) { 
+    firebase.database().ref().child('sensor').set({"interval":value});   
+    console.log("SetSensorInterval", value);
+}
+
+$(function () { 
+    $("#sliderSensor").slider({
         range: "min",
-        value: 37,
+        value: 150,
         min: 1,
-        max: 255,
+        max: 300,
         slide: function (event, ui) {
-            $("#amount").val("R " + ui.value);
-            RGBArray[0] = ui.value;
-            PushRGB();
+            $("#amount").val("LightSensor " + ui.value);            
+            PushSensor(ui.value);
         }
     });
-    $("#sliderG").slider({
+    $("#sliderSensorInterval").slider({
         range: "min",
-        value: 37,
+        value: 1,
         min: 1,
-        max: 255,
+        max: 60,
         slide: function (event, ui) {
-            $("#amount").val("G " + ui.value);
-            RGBArray[1] = ui.value;
-            PushRGB();
+            $("#amountInterval").val("Interval " + ui.value);            
+            SetSensorInterval(ui.value);
         }
-    });
-    $("#sliderB").slider({
-        range: "min",
-        value: 37,
-        min: 1,
-        max: 255,
-        slide: function (event, ui) {
-            $("#amount").val("B " + ui.value);
-            RGBArray[2] = ui.value;
-            PushRGB();
-        }
-    });
+    });    
 });

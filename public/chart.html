@@ -16,28 +16,31 @@
   </head>
   <!--Controller-->
   <body ng-controller="Ctrl">
+    <div align="center">
       <a href="index.html" >index</a>
       <a href="chart.html" >chart</a>
-    <div class="header">
-      <!--Style-->
-      <h1 ng-style="{'background-color': 'rgb(' + data.colors.r + ',' + data.colors.g + ',' + data.colors.b +')'}">                      
-        Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}                                                     
-      </h1>
-      <h2> Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}</h2>   
+      <a href="chartSensor.html" >chartSensor</a>
+        <div class="header">
+          <!--Style-->
+          <h1 ng-style="{'background-color': 'rgb(' + data.colors.r + ',' + data.colors.g + ',' + data.colors.b +')'}">                      
+            Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}                                                     
+          </h1>
+          <h2> Afro Circus! {{ data.colors.r }} : {{ data.colors.g }} : {{ data.colors.b }}</h2>   
 
-    </div>   
-      onSensor {{ data.onSensor}}
-      <button id="changeColor">changeColor</button>
-    <button id="addColor">add Color</button>
-     <button id="puchColor">puch Color</button>
+        </div>   
+          onSensor {{ data.onSensor}}
+          <button id="changeColor">changeColor</button>
+        <button id="addColor">add Color</button>
+         <button id="puchColor">puch Color</button>
 
-<p>
-  <label for="amount">slider :</label>
-  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-</p>
-     <div id="sliderR"></div>
-      <div id="sliderG"></div>
-      <div id="sliderB"></div>
-      <div id="curve_chart" style="width: 900px; height: 500px"></div>
+            <p>
+              <label for="amount">slider :</label>
+              <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+         <div id="sliderR"></div>
+          <div id="sliderG"></div>
+          <div id="sliderB"></div>
+          <div id="curve_chart" style="width: 900px; height: 500px"></div>
+        </div>
   </body>
 </html>
